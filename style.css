@@ -1,108 +1,228 @@
 :root {
-    --bg-color: #1a1a2e;
-    --card-color: #16213e;
-    --text-color: #e94560;
-    --accent-color: #0f3460;
+    --bg-color: #080710;
+    --card-color: rgba(255, 255, 255, 0.03);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --neon-x: #00f2fe;
+    --neon-o: #fe019a;
     --cell-size: 100px;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-color);
-    color: #fff;
+    font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+    /* Advanced layered space background matrix */
+    background: radial-gradient(circle at 20% 30%, rgba(0, 242, 254, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(254, 1, 154, 0.15) 0%, transparent 40%),
+                var(--bg-color);
+    background-size: cover;
+    color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    overflow: hidden;
 }
 
 .container {
     text-align: center;
     background: var(--card-color);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 h1 {
+    font-family: 'Orbitron', sans-serif;
     margin-top: 0;
-    color: #fff;
-    letter-spacing: 2px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 6px;
+    background: linear-gradient(90deg, var(--neon-x), var(--neon-o));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+    margin-bottom: 30px;
 }
 
 .mode-selection {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
 .btn {
-    background-color: var(--accent-color);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin: 0 5px;
-    font-size: 1rem;
+    font-family: 'Orbitron', sans-serif;
+    background: rgba(255, 255, 255, 0.05);
+    color: #aaa;
+    border: 1px solid var(--border-color);
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    font-weight: 500;
     cursor: pointer;
-    border-radius: 5px;
-    transition: background 0.3s ease;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 1px;
 }
 
 .btn:hover {
-    background-color: #1f4e87;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
 }
 
 .btn.active {
-    background-color: var(--text-color);
+    background: linear-gradient(135deg, rgba(0, 242, 254, 0.2), rgba(254, 1, 154, 0.2));
+    border-color: var(--neon-x);
+    color: #fff;
     font-weight: bold;
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+    text-shadow: 0 0 5px #fff;
 }
 
 .status {
-    font-size: 1.25rem;
-    margin-bottom: 20px;
-    height: 30px;
-    font-weight: 600;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.35rem;
+    margin-bottom: 25px;
+    height: 35px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #e0e0e0;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 .board {
     display: grid;
     grid-template-columns: repeat(3, var(--cell-size));
     grid-template-rows: repeat(3, var(--cell-size));
-    gap: 10px;
+    gap: 15px;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .cell {
-    background-color: var(--bg-color);
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2.5rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
     font-weight: bold;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: all 0.25s ease;
     user-select: none;
 }
 
 .cell:hover {
-    background-color: #222244;
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
 }
 
+/* Neon X glowing states */
 .cell.x {
-    color: #38ef7d;
+    color: var(--neon-x);
+    text-shadow: 0 0 15px var(--neon-x), 0 0 30px var(--neon-x);
+    background: rgba(0, 242, 254, 0.03);
+    border-color: rgba(0, 242, 254, 0.4);
 }
 
+/* Neon O glowing states */
 .cell.o {
-    color: #ff4b2b;
+    color: var(--neon-o);
+    text-shadow: 0 0 15px var(--neon-o), 0 0 30px var(--neon-o);
+    background: rgba(254, 1, 154, 0.03);
+    border-color: rgba(254, 1, 154, 0.4);
 }
 
 .btn.reset {
-    background-color: #333;
+    background: transparent;
+    border: 1px solid var(--neon-o);
+    color: var(--neon-o);
     width: 100%;
-    max-width: 200px;
+    max-width: 240px;
+    text-transform: uppercase;
 }
 
 .btn.reset:hover {
-    background-color: #444;
+    background: var(--neon-o);
+    color: #000;
+    box-shadow: 0 0 25px var(--neon-o);
+    font-weight: bold;
 }
+
+.footer-credit {
+    margin-top: 25px;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    font-family: 'Orbitron', sans-serif;
+}
+/* Social Link Hub Layout */
+.social-hub {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.social-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px;
+    height: 42px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    border-radius: 50%; /* Makes buttons round */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+    color: #888;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Individual Neon Hover Brand Glows */
+.social-btn.linkedin:hover {
+    color: #0077b5;
+    border-color: #0077b5;
+    background: rgba(0, 119, 181, 0.1);
+    box-shadow: 0 0 15px rgba(0, 119, 181, 0.4);
+}
+
+.social-btn.email:hover {
+    color: #ea4335;
+    border-color: #ea4335;
+    background: rgba(234, 67, 53, 0.1);
+    box-shadow: 0 0 15px rgba(234, 67, 53, 0.4);
+}
+
+.social-btn.twitter:hover {
+    color: #ffffff;
+    border-color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.social-btn.youtube:hover {
+    color: #ff0000;
+    border-color: #ff0000;
+    background: rgba(255, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+}
+.social-btn.instagram:hover {
+    color: #fccc63;
+    border-color: #f77737;
+    /* Clean CSS trick mimicking Instagram's iconic color mesh gradient */
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+    -webkit-background-clip: unset; 
+    box-shadow: 0 0 15px rgba(214, 36, 159, 0.5);
+}
+
+    
