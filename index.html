@@ -3,19 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic-Tac-Toe: PvP & Bot</title>
+    <title>Tic-Tac-Toe: Advanced Edition</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Importing a futuristic font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1>Tic-Tac-Toe</h1>
+        <h1>TIC-TAC-TOE</h1>
         
         <div class="mode-selection">
-            <button id="pvp-btn" class="btn active">1 vs 1</button>
-            <button id="pve-btn" class="btn">1 vs Bot</button>
+            <button id="pvp-btn" class="btn active">Player1 vs Player2 </button>
+            <button id="pve-btn" class="btn">Player vs Bot</button>
         </div>
 
-        <div id="status" class="status">Player X's Turn</div>
+        <div id="status" class="status">Lokesh's Turn</div>
 
         <div id="board" class="board">
             <div class="cell" data-index="0"></div>
@@ -29,7 +33,29 @@
             <div class="cell" data-index="8"></div>
         </div>
 
-        <button id="reset-btn" class="btn reset">Restart Game</button>
+        <button id="reset-btn" class="btn reset">Restart Simulation</button>
+        
+        <!-- Signature Line -->
+        <div class="footer-credit">CREATED BY LOKESH GOKEDA</div>
+
+        <!-- Social Hub Panel with Instagram Added -->
+        <div class="social-hub">
+            <a href="https://www.linkedin.com/in/lokesh-gokeda-b88436360?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="social-btn linkedin" title="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="mailto:lokeshgokeda2@gmail.com" class="social-btn email" title="Email Me">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://x.com/LOKESHGOKEDA" target="_blank" class="social-btn twitter" title="X (Twitter)">
+                <i class="fab fa-x-twitter"></i>
+            </a>
+            <a href="https://youtube.com/@lokeshgokeda-j9b?si=WblMGaC1b5l6tPfF" target="_blank" class="social-btn youtube" title="YouTube">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://www.instagram.com/alwayslokesh007?igsh=cTdnNnQ3dXBudnQ0" target="_blank" class="social-btn instagram" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
     </div>
 
     <script src="script.js"></script>
