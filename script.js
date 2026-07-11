@@ -6,7 +6,7 @@ const pvpBtn = document.getElementById('pvp-btn');
 const pveBtn = document.getElementById('pve-btn');
 
 let board = ["", "", "", "", "", "", "", "", ""];
-let currentPlayer = "X"; // Player X always starts
+let currentPlayer = "X"; // X represents Lokesh
 let isGameActive = true;
 let gameMode = "pvp"; // Default mode is 1 vs 1
 
@@ -36,7 +36,6 @@ cells.forEach(cell => {
 function handleCellClick(cell) {
     const index = cell.getAttribute('data-index');
 
-    // Prevent clicking if cell is taken, game over, or if it's the bot's turn
     if (board[index] !== "" || !isGameActive || (gameMode === "pve" && currentPlayer === "O")) {
         return;
     }
@@ -46,7 +45,7 @@ function handleCellClick(cell) {
     if (!checkResult()) {
         if (gameMode === "pve" && isGameActive) {
             statusElement.innerText = "Bot is thinking...";
-            setTimeout(botMove, 500); // Small delay to make the bot feel natural
+            setTimeout(botMove, 500);
         }
     }
 }
@@ -69,20 +68,25 @@ function checkResult() {
     }
 
     if (roundWon) {
-        statusElement.innerText = `Player ${currentPlayer} Wins!`;
+        const winnerName = currentPlayer === "X" ? "Lokesh" : (gameMode === "pve" ? "Bot" : "Player O");
+        statusElement.innerText = `${winnerName} Wins!`;
         isGameActive = false;
         return true;
     }
 
     if (!board.includes("")) {
-        statusElement.innerText = "It's a Draw!";
+        statusElement.innerText = "Simulation Draw!";
         isGameActive = false;
         return true;
     }
 
     // Switch turns
     currentPlayer = currentPlayer === "X" ? "O" : "X";
-    statusElement.innerText = gameMode === "pve" && currentPlayer === "O" ? "Bot's Turn" : `Player ${currentPlayer}'s Turn`;
+    if (currentPlayer === "X") {
+        statusElement.innerText = "Lokesh's Turn";
+    } else {
+        statusElement.innerText = gameMode === "pve" ? "Bot's Turn" : "Player O's Turn";
+    }
     return false;
 }
 
@@ -95,7 +99,7 @@ function botMove() {
     // 1. Check if Bot ("O") can win right now
     move = findBestMove("O");
     
-    // 2. If not, check if Bot needs to block Player ("X") from winning
+    // 2. If not, check if Bot needs to block Lokesh ("X") from winning
     if (move === -1) {
         move = findBestMove("X");
     }
@@ -116,13 +120,11 @@ function botMove() {
     }
 }
 
-// Helper function to see if a player is 1 move away from winning
 function findBestMove(player) {
     for (let i = 0; i < WINNING_COMBINATIONS.length; i++) {
         const [a, b, c] = WINNING_COMBINATIONS[i];
         const values = [board[a], board[b], board[c]];
         
-        // If two spots match the player and the third is empty
         if (values.filter(v => v === player).length === 2 && values.filter(v => v === "").length === 1) {
             if (board[a] === "") return a;
             if (board[b] === "") return b;
@@ -137,9 +139,9 @@ function restartGame() {
     board = ["", "", "", "", "", "", "", "", ""];
     currentPlayer = "X";
     isGameActive = true;
-    statusElement.innerText = "Player X's Turn";
+    statusElement.innerText = "Lokesh's Turn";
     cells.forEach(cell => {
         cell.innerText = "";
-        cell.className = "cell"; // clears 'x' and 'o' classes
+        cell.className = "cell";
     });
-}
+        }
